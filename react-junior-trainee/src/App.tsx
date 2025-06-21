@@ -1,7 +1,7 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useFetchFacto } from './hooks/useFetchFacto';
+import { useFetchFacto } from './hooks/useCatFacto';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { API_URL } from './config';
