@@ -35,15 +35,12 @@ function App() {
         <button onClick={getFacto}>
           {textButton}
         </button>
-        <p>{facto}</p>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
+        <p data-testid="facto">{facto}</p>
+        {loading && <span>Loading...</span>}
+        {error && <span>Error: {error}</span>}
         {/* {imageURL !== '' && <img src={imageURL} alt={`Image got with first word of the sentence: ${facto}`} width={400} />} */}
-        {firstWord && <img src={API_URL.CATFACT_WORD_IMAGE + firstWord} alt={`Image got with first word of the sentence: ${facto}`} width={400} />}
+        {firstWord && <img data-testid="imageCat" src={API_URL.CATFACT_WORD_IMAGE + firstWord} alt={`Image got with first word of the sentence: ${facto}`} width={400} />}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
