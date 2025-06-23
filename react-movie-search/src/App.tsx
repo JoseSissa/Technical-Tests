@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import './App.css'
 import { useGetMovieByName } from './hooks/useGetMovieByName'
 import { ListOfMovies, NoMoviesResult } from './components/Movies'
 import { useControlInput } from './hooks/useControlInput'
+import debounce from 'just-debounce-it'
 
 
 function App() {
@@ -10,6 +11,13 @@ function App() {
   const [sort, setSort] = useState(false)
   const { movieData, getDataMovie, loading } = useGetMovieByName({ search, sort })
   const { error } = useControlInput(search)
+
+  const debouncedSearch = useCallback(
+    debounce(({ search }: { search: string }) => {
+      getDataMovie({ search })
+    }, 500)
+    , []
+  )
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -20,7 +28,8 @@ function App() {
     const search = e.target.value
     // Validation: If the search starts with space, do nothing
     if (search.startsWith(' ')) return
-    setSearch(e.target.value)
+    setSearch(search)
+    debouncedSearch({ search })
   }
 
   const handleSort = () => {
