@@ -1,25 +1,23 @@
 import { useState } from 'react'
-import { API_KEY } from '../config';
 import type { MovieData } from '../types/types';
+import { SearchMovies } from '../services/movies';
 
 export function useGetMovieByName() {
     const [movieData, setMovieData] = useState<Array<MovieData> | null>(null)
+    const [loading, setLoading] = useState(false)
 
-    const getDataMovie = ({ movie }: { movie: string }) => {
-        // fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t=${movie}`) --> Get one movie
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`)
-            .then((res) => {
-                if (!res.ok) throw new Error('Something went wrong')
-                return res.json()
-            })
-            .then((data) => {
-                console.log(data);
-                setMovieData(data.Search)
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+    const getDataMovie = async ({ search }: { search: string }) => {
+        try {
+            setLoading(true)
+            const listMovies = await SearchMovies(search)
+            setMovieData(listMovies)
+        } catch (error: any) {
+            console.log(error.message);
+
+        } finally {
+            setLoading(false)
+        }
     }
 
-    return { movieData, getDataMovie }
+    return { movieData, getDataMovie, loading }
 }
