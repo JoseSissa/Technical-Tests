@@ -1,7 +1,22 @@
+body {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0px 40px;
+}
+
+@media (width < 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
 
 header h1 {
@@ -19,4 +34,38 @@ header label {
   align-items: center;
   gap: 8px;
   margin: 0;
+}
+
+main {
+  width: 100%;
+}
+
+.movies {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 40px;
+}
+
+.movies li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.movies li h2,
+.movies li p {
+  margin: 0;
+}
+
+.movies li h2 {
+  font-size: 18px;
+}
+
+.movies li p {
+  font-size: 14px;
 }

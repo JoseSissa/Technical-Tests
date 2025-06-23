@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { API_KEY } from '../config';
-
-interface MovieData {
-    [key: string]: string;
-}
+import type { MovieData } from '../types/types';
 
 export function useGetMovieByName() {
     const [movieData, setMovieData] = useState<Array<MovieData> | null>(null)
