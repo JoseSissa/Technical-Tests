@@ -7,12 +7,13 @@ import { useControlInput } from './hooks/useControlInput'
 
 function App() {
   const [search, setSearch] = useState('')
-  const { movieData, getDataMovie, loading } = useGetMovieByName({ search })
+  const [sort, setSort] = useState(false)
+  const { movieData, getDataMovie, loading } = useGetMovieByName({ search, sort })
   const { error } = useControlInput(search)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    getDataMovie()
+    getDataMovie({ search })
   }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +21,10 @@ function App() {
     // Validation: If the search starts with space, do nothing
     if (search.startsWith(' ')) return
     setSearch(e.target.value)
+  }
+
+  const handleSort = () => {
+    setSort(!sort)
   }
 
   return (
@@ -30,6 +35,7 @@ function App() {
           <label htmlFor="search">
             Search movie
             <input style={{ border: '1px solid transparent', borderColor: error ? 'red' : 'transparent' }} type='text' id="search" placeholder='Avengers, The Matrix, etc' value={search} onChange={handleSearch} />
+            <input type="checkbox" name="check" id="check" onChange={handleSort} checked={sort} />
           </label>
           <button type='submit' disabled={search.length < 3 || error !== ''}>Search</button>
         </form>
