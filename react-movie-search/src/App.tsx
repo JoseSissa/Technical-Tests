@@ -7,12 +7,12 @@ import { useControlInput } from './hooks/useControlInput'
 
 function App() {
   const [search, setSearch] = useState('')
-  const { movieData, getDataMovie, loading } = useGetMovieByName()
+  const { movieData, getDataMovie, loading } = useGetMovieByName({ search })
   const { error } = useControlInput(search)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    getDataMovie({ search })
+    getDataMovie()
   }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
