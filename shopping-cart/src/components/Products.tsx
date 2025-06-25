@@ -12,6 +12,7 @@ export function Products({ products }: { products: Product[] }) {
                             <div>
                                 <h3>{product.title}</h3>
                                 <p>Price: ${product.price}</p>
+                                <p>Category: {product.category}</p>
                             </div>
                             <div>
                                 <button>
@@ -22,8 +23,7 @@ export function Products({ products }: { products: Product[] }) {
                             <p>Discount: {product.discountPercentage}%</p>
                             <p>Rating: {product.rating}</p>
                             <p>Stock: {product.stock}</p>
-                            <p>Brand: {product.brand}</p>
-                            <p>Category: {product.category}</p> */}
+                            <p>Brand: {product.brand}</p> */}
                         </li>
                     ))}
                 </ul>
