@@ -1,7 +1,9 @@
-import type { Filters } from '../../types/types'
+import { useContext } from 'react'
+import { FiltersContext } from '../../context/Filter.tsx'
 import './Footer.css'
 
-export function Footer({ filters }: { filters: Filters }) {
+export function Footer() {
+    const { filters } = useContext(FiltersContext)
 
     return (
         <footer className='footer'>

@@ -1,15 +1,15 @@
 import { useContext } from 'react'
-import { FiltersContext } from '../context/filter';
+import { FiltersContext } from '../context/Filter';
 import type { Product } from '../types/types';
 
 export function useFilters() {
-    // const [filters, setFilter] = useState<Filters>({ price: 0, category: 'all' });
 
     const { filters, setFilters } = useContext(FiltersContext)
 
+    const getFilteredProducts = (
+        { products, newCategory = filters.category, newPrice = filters.price }:
+            { products: Product[], newCategory?: string, newPrice?: number }) => {
 
-
-    const getFilteredProducts = ({ products, newCategory = filters.category, newPrice = filters.price }: { products: Product[], newCategory?: string, newPrice?: number }) => {
         setFilters({ price: newPrice, category: newCategory })
         const filteredProducts = products.filter((product) => {
             if (product.price >= newPrice && (product.category === newCategory || newCategory === 'all')) {
@@ -19,5 +19,5 @@ export function useFilters() {
         return filteredProducts
     }
 
-    return { getFilteredProducts, filters }
+    return { getFilteredProducts }
 }

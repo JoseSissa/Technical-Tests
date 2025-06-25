@@ -1,12 +1,12 @@
 import type { Product } from '../types/types'
 import { AddToCartIcon } from './icons'
 
-export function Products({ products }: { products: Product[] }) {
+export function Products({ productsFiltered }: { productsFiltered: Product[] }) {
     return (
-        products
+        productsFiltered
             ? (
                 <ul className='products'>
-                    {products.map((product) => (
+                    {productsFiltered.map((product) => (
                         <li key={product.id}>
                             <img src={product.thumbnail} alt={product.title} />
                             <div>

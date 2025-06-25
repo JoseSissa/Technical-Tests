@@ -1,8 +1,11 @@
-import type { Dispatch, SetStateAction } from 'react';
-import type { Filters, Product } from "../types/types"
+import { useContext } from 'react'
+import { FiltersContext } from "../../context/Filter"
+import { useFilters } from "../../hooks/useFilters"
+import type { Product } from "../../types/types"
 
-export function Header(
-    { products, categories, maxPrice, setProductsFiltered, getFilteredProducts, filters }: { products: Product[], categories: string[], maxPrice: number, setProductsFiltered: Dispatch<SetStateAction<Product[]>>, getFilteredProducts: any, filters: Filters }) {
+export function Filters({ products, allCategories, maxPrice, setProductsFiltered }: { products: Product[], allCategories: string[], maxPrice: number, setProductsFiltered: any }) {
+    const { getFilteredProducts } = useFilters()
+    const { filters } = useContext(FiltersContext)
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newCategory = event.target.value
@@ -15,15 +18,14 @@ export function Header(
     }
 
     return (
-        <header>
-            <h1>Shopping Cart</h1>
+        <section>
             <div>
                 <label htmlFor="category">Category:</label>
                 <select name="category" id="category" onChange={handleCategoryChange}>
                     <option value="all" selected>All</option>
                     {
-                        categories && (
-                            categories.map((category) => (
+                        allCategories && (
+                            allCategories.map((category) => (
                                 <option value={category} key={category}>{category}</option>
                             ))
                         )
@@ -35,6 +37,6 @@ export function Header(
                 <input type="range" name="price" id="price" min="0" max={maxPrice} value={filters.price} onChange={handlePriceChange} />
                 <span>${filters.price}</span>
             </div>
-        </header>
+        </section>
     )
 }
