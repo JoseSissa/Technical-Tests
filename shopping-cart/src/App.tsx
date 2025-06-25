@@ -3,12 +3,16 @@ import './App.css'
 import { Products } from './components/Products'
 import type { Product } from './types/types'
 import { Header } from './components/Header';
+import { Footer } from './components/Footer/Footer';
+import { useFilters } from './hooks/useFilters';
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
   const [maxPrice, setMaxPrice] = useState<number>(0);
   const [categories, setCategories] = useState<string[]>([]);
+
+  const { getFilteredProducts, filters } = useFilters()
 
   const getMaxPriceAndAllCategories = ({ products }: { products: Product[] }) => {
     let allCategories: string[] = []
@@ -40,8 +44,9 @@ function App() {
   return (
     <>
       <main>
-        <Header products={products} categories={categories} maxPrice={maxPrice} setProductsFiltered={setProductsFiltered} />
+        <Header products={products} categories={categories} maxPrice={maxPrice} setProductsFiltered={setProductsFiltered} getFilteredProducts={getFilteredProducts} filters={filters} />
         <Products products={productsFiltered} />
+        <Footer filters={filters} />
       </main>
     </>
   )
