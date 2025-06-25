@@ -1,10 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react';
 import type { Filters, Product } from "../types/types"
-import { useFilters } from '../hooks/useFilters';
 
 export function Header(
     { products, categories, maxPrice, setProductsFiltered, getFilteredProducts, filters }: { products: Product[], categories: string[], maxPrice: number, setProductsFiltered: Dispatch<SetStateAction<Product[]>>, getFilteredProducts: any, filters: Filters }) {
-    // const { getFilteredProducts, filters } = useFilters()
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newCategory = event.target.value
