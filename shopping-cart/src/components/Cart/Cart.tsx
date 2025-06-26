@@ -8,7 +8,7 @@ import { CartItem } from './CartItem.js'
 
 export function Cart() {
     const cartCheckboxId = useId()
-    const { cart, addToCart, subtractFromCart } = useCart()
+    const { cart, addToCart, subtractFromCart, cleanCart } = useCart()
 
     return (
         <>
@@ -29,7 +29,7 @@ export function Cart() {
                     ))}
                 </ul>
 
-                <button onClick={(e) => console.log(e)}>
+                <button onClick={cleanCart}>
                     <ClearCartIcon />
                 </button>
             </aside>

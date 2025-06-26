@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import type { Product, ProductInCart, CartContextType } from "../types/types";
 
 
@@ -11,7 +11,16 @@ export const CartContext = createContext<CartContextType>({
 });
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-    const [cart, setCart] = useState<ProductInCart[]>([]);
+    const [cart, setCart] = useState<ProductInCart[]>(
+        window.localStorage.getItem('cart')
+            ? JSON.parse(window.localStorage.getItem('cart') as string)
+            : []
+    );
+
+    useEffect(() => {
+        window.localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
+
 
     const addToCart = (product: Product) => {
         // Search if product is already in cart
@@ -29,7 +38,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             // If product is in cart, update quantity
             setCart(prevCart => [...prevCart, { ...product, quantity: 1 }])
         }
-    };
+    }
 
     const cleanCart = () => setCart([]);
 
