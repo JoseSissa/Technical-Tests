@@ -10,12 +10,20 @@ export const cartReducer = (state: ProductInCart[], action: CartAction) => {
         case 'ADD_TO_CART': {
             const indexProductInCart = state.findIndex((p) => p.id === actionPayload.id)
             if (indexProductInCart >= 0) {
-                return state.map((elem, i) => {
-                    if (indexProductInCart === i) {
-                        elem.quantity = elem.quantity + 1
-                    }
-                    return elem
-                })
+                // With map function
+                // return state.map((elem, i) => {
+                //     if (indexProductInCart === i) {
+                //         elem.quantity = elem.quantity + 1
+                //     }
+                //     return elem
+                // })
+
+                // With slice function
+                return [
+                    ...state.slice(0, indexProductInCart),
+                    { ...state[indexProductInCart], quantity: state[indexProductInCart].quantity + 1 },
+                    ...state.slice(indexProductInCart + 1)
+                ]
 
             } else {
                 return [...state, { ...actionPayload, quantity: 1 }]
