@@ -1,10 +1,5 @@
 import { createContext, useState } from "react";
-import type { Filters } from "../types/types";
-
-type FiltersContextType = {
-    filters: Filters;
-    setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-};
+import type { Filters, FiltersContextType } from "../types/types";
 
 
 // 1. Creation of the context
