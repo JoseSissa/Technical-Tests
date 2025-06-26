@@ -26,6 +26,7 @@ export type CartContextType = {
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
     cleanCart: () => void;
+    subtractFromCart: (product: Product) => void;
 };
 
 export type FiltersContextType = {
