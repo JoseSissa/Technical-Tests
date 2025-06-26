@@ -22,7 +22,7 @@ export function Filters({ products, allCategories, maxPrice, setProductsFiltered
             <div>
                 <label htmlFor="category">Category:</label>
                 <select name="category" id="category" onChange={handleCategoryChange}>
-                    <option value="all" selected>All</option>
+                    <option value="all" defaultValue={"all"}>All</option>
                     {
                         allCategories && (
                             allCategories.map((category) => (

@@ -33,3 +33,9 @@ export type FiltersContextType = {
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 };
+
+export type CartAction =
+    | { type: 'ADD_TO_CART'; payload: Product }
+    | { type: 'REMOVE_FROM_CART'; payload: Product }
+    | { type: 'CLEAN_CART'; payload: null }
+    | { type: 'SUBTRACT_FROM_CART'; payload: Product }
