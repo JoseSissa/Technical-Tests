@@ -1,1 +1,1 @@
-export const NUM_POKEMON_PER_PAGE = 20
+export const NUM_POKEMON_PER_PAGE = 25
