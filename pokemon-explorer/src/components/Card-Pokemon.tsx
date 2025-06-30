@@ -1,6 +1,10 @@
+import { useModal } from "../hooks/useModal"
 import type { PokemonDetail } from "../types/types"
 
-export function CardPokemon({ pokemonList, handleModal }: { pokemonList: PokemonDetail[], handleModal: (pokemon: PokemonDetail) => void }) {
+export function CardPokemon({ pokemonList }: { pokemonList: PokemonDetail[] }) {
+
+    const { openModal } = useModal()
+
     return (
         pokemonList ? (
             <ul className="pokemon-list__grid">
@@ -10,13 +14,13 @@ export function CardPokemon({ pokemonList, handleModal }: { pokemonList: Pokemon
                             <span>{pokemon.id}</span>
                             <img src={`${pokemon.sprites.other['official-artwork'].front_default}`} alt={`Image of ${pokemon.name}`} />
                             <h2>{pokemon.name}</h2>
-                            <button onClick={() => handleModal(pokemon)}>
+                            <button onClick={() => openModal(pokemon)}>
                                 Details
                             </button>
                         </li>
                     )
                 })}
             </ul>
-        ) : <div>No...</div>
+        ) : <div>Any pokemon found.</div>
     )
 }

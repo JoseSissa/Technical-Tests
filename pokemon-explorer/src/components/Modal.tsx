@@ -1,39 +1,32 @@
-import { useState, useEffect } from "react";
-import type { PokemonDetail } from "../types/types";
+import type { PokemonDetail } from "../types/types"
 
-export function Modal({ showModal, setShowModal, pokemonDetail }: { showModal: boolean, setShowModal: React.Dispatch<React.SetStateAction<boolean>>, pokemonDetail: PokemonDetail }) {
-    const [pd, setPd] = useState<PokemonDetail>(pokemonDetail)
-    useEffect(() => {
-        setPd(pokemonDetail)
-    }, [pokemonDetail])
+type ModalProps = {
+    reference: React.RefObject<HTMLDialogElement | null>;
+    closeModal: () => void;
+    infoModal: PokemonDetail | null;
+};
 
-
-    return pd && (
-        <dialog id="modal-pokemon-details" open={showModal} onClose={() => setShowModal(false)}>
-            hola
-            {/* <p>ID: {pokemonDetail.id}</p>
-                <p>Name: {pokemonDetail.name}</p>
-                <p>Image</p>
-                <img src={pokemonDetail.sprites.other['official-artwork'].front_default} alt="" />
-                <p>Height: {pokemonDetail.height}</p>
-                <p>Weight: {pokemonDetail.weight}</p> */}
+export function Modal({ reference, closeModal, infoModal }: ModalProps) {
+    return (
+        <dialog ref={reference} className="modal-pokemon-details" onClose={closeModal} closedby="any">
+            <p>ID: {infoModal?.id}</p>
+            <p>Name: {infoModal?.name}</p>
+            <p>Image</p>
+            <img width={300} height={300} src={infoModal?.sprites?.other['official-artwork']?.front_default} alt={`Image of ${infoModal?.name}`} />
+            <ul>
+                {infoModal?.types.map(elem => {
+                    return (
+                        <li key={elem.slot}>
+                            {elem.type.name}
+                        </li>
+                    )
+                })}
+            </ul>
+            <p>Height: {infoModal?.height}</p>
+            <p>Weight: {infoModal?.weight}</p>
             <form method="dialog">
                 <button>Close</button>
             </form>
         </dialog>
     )
-    // return (
-    //     <dialog id="modal-pokemon-details" open={showModal} onClose={() => setShowModal(false)}>
-    //         hola
-    //         {/* <p>ID: {pokemonDetail.id}</p>
-    //             <p>Name: {pokemonDetail.name}</p>
-    //             <p>Image</p>
-    //             <img src={pokemonDetail.sprites.other['official-artwork'].front_default} alt="" />
-    //             <p>Height: {pokemonDetail.height}</p>
-    //             <p>Weight: {pokemonDetail.weight}</p> */}
-    //         <form method="dialog">
-    //             <button>Close</button>
-    //         </form>
-    //     </dialog>
-    // )
 }
