@@ -94,3 +94,12 @@ button:focus-visible {
   width: 100%;
   height: auto;
 }
+
+.modal-pokemon-details {
+  position: fixed;
+  inset: 0;
+}
+
+dialog::backdrop {
+  background-color: black;
+}

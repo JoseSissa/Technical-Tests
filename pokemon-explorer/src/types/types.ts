@@ -1,3 +1,10 @@
+// Allow use closedby attibute in Dialog element without TypeScript error
+declare module 'react' {
+    interface DialogHTMLAttributes<T> extends HTMLAttributes<T> {
+        closedby?: string;
+    }
+}
+
 export type Pokemon = {
     name: string
     url: string
