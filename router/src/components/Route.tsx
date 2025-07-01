@@ -1,8 +1,6 @@
-import type { JSX } from "react"
-
 type RouteProps = {
     path: string
-    component: ({ routeParams }: { routeParams: any }) => JSX.Element
+    component?: any
 }
 
 export function Route({ path, component }: RouteProps) {

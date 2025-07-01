@@ -7,6 +7,7 @@ export default function AboutPage() {
             <p>This is the about page</p>
             {/* <button onClick={() => navigate('/')}>Home</button> */}
             <Link to="/">Home</Link>
+            <Link to="/info">Info</Link>
         </>
     )
 }

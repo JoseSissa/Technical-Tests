@@ -7,6 +7,7 @@ export default function HomePage() {
             <p>This is the home page</p>
             {/* <button onClick={() => navigate('/about')}>About</button> */}
             <Link to="/about">About</Link>
+            <Link to="/info">Info</Link>
         </>
     )
 }

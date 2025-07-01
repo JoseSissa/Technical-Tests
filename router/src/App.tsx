@@ -1,8 +1,10 @@
+import { lazy, Suspense } from 'react'
 import './App.css'
 import HomePage from './pages/Home'
-import AboutPage from './pages/About'
-import DinamicPage from './pages/Dinamic'
-import ContactPage from './pages/Contact'
+const LazyAboutPage = lazy(() => import('./pages/About')) // <-- Lazy loading
+const LazyDinamicPage = lazy(() => import('./pages/Dinamic')) // <-- Lazy loading
+// import ContactPage from './pages/Contact'
+const LazyContactPage = lazy(() => import('./pages/Contact')) // <-- Lazy loading
 import { Router } from './components/Router'
 import { Route } from './components/Route'
 import type { RouteType } from './types/types'
@@ -14,21 +16,23 @@ const routes: RouteType[] = [
   },
   {
     path: '/about',
-    component: AboutPage,
+    component: LazyAboutPage,
   },
   {
     path: '/search/:query',
-    component: DinamicPage,
+    component: LazyDinamicPage,
   }
 ]
 
 function App() {
   return (
     <main>
-      <Router routes={routes}>
-        <Route path="/info" component={ContactPage} />
-        <Route path="/contact" component={ContactPage} />
-      </Router>
+      <Suspense fallback={null}>
+        <Router routes={routes}>
+          <Route path="/info" component={LazyContactPage} />
+          <Route path="/contact" component={LazyContactPage} />
+        </Router>
+      </Suspense>
     </main>
   )
 }
