@@ -1,11 +1,12 @@
-import type { JSX } from "react"
+import type { FC, ReactNode } from "react"
 
-export type Route = {
+export type RouteType = {
     path: string
-    component: ({ routeParams }: { routeParams: any }) => JSX.Element
+    component: FC<any>
 }
 
 export type RouterProps = {
-    routes: Route[]
+    routes: RouteType[]
     defaultComponent?: any
+    children: ReactNode
 }

@@ -2,10 +2,12 @@ import './App.css'
 import HomePage from './pages/Home'
 import AboutPage from './pages/About'
 import DinamicPage from './pages/Dinamic'
+import ContactPage from './pages/Contact'
 import { Router } from './components/Router'
-import type { Route } from './types/types'
+import { Route } from './components/Route'
+import type { RouteType } from './types/types'
 
-const routes: Route[] = [
+const routes: RouteType[] = [
   {
     path: '/',
     component: HomePage,
@@ -23,7 +25,10 @@ const routes: Route[] = [
 function App() {
   return (
     <main>
-      <Router routes={routes} />
+      <Router routes={routes}>
+        <Route path="/info" component={ContactPage} />
+        <Route path="/contact" component={ContactPage} />
+      </Router>
     </main>
   )
 }

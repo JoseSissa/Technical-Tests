@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Children, isValidElement } from 'react'
 import { EVENT } from '../config/const'
-import type { RouterProps } from '../types/types'
+import type { RouterProps, RouteType } from '../types/types'
 import { NotFoundPage } from '../pages/404'
 import { match } from 'path-to-regexp'
 
-export function Router({ routes = [], defaultComponent: DefaultComponent = NotFoundPage }: RouterProps) {
+export function Router({ routes = [], defaultComponent: DefaultComponent = NotFoundPage, children }: RouterProps) {
     const [currentPath, setCurrentPath] = useState(window.location.pathname)
 
     useEffect(() => {
@@ -23,9 +23,22 @@ export function Router({ routes = [], defaultComponent: DefaultComponent = NotFo
     }, [])
 
     let routeParams = {}
+
+    const routesFromChildren = Children.map(children, (child) => {
+        if (isValidElement(child)) {
+            const { props, type } = child
+            const name = (type as any).name
+            const isRoute = name === 'Route'
+            return isRoute ? props as RouteType : null
+        }
+    })
+
+    const routesToUse = routes.concat(routesFromChildren ?? [])
+
+
     // We used path-to-regexp
     // to find dinamics routes such as /search/:query
-    const Page = routes.find((route) => {
+    const Page = routesToUse.find((route) => {
         if (route.path === currentPath) return true
 
         const matcherUrl = match(route.path, { decode: decodeURIComponent })
