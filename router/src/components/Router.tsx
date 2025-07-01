@@ -53,5 +53,5 @@ export function Router({ routes = [], defaultComponent: DefaultComponent = NotFo
 
     return Page
         ? <Page routeParams={routeParams} />
-        : <DefaultComponent />
+        : <DefaultComponent routeParams={routeParams} />
 }

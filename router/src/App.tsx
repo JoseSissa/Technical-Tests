@@ -21,6 +21,10 @@ const routes: RouteType[] = [
   {
     path: '/search/:query',
     component: LazyDinamicPage,
+  },
+  {
+    path: '/:lang/about',
+    component: LazyAboutPage,
   }
 ]
 
