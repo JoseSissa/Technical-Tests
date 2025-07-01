@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react'
-import './App.css'
 import HomePage from './pages/Home'
 const LazyAboutPage = lazy(() => import('./pages/About')) // <-- Lazy loading
 const LazyDinamicPage = lazy(() => import('./pages/Dinamic')) // <-- Lazy loading

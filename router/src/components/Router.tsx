@@ -3,13 +3,14 @@ import { EVENT } from '../config/const'
 import type { RouterProps, RouteType } from '../types/types'
 import { NotFoundPage } from '../pages/404'
 import { match } from 'path-to-regexp'
+import { getCurrentPath } from '../utils/utils'
 
 export function Router({ routes = [], defaultComponent: DefaultComponent = NotFoundPage, children }: RouterProps) {
-    const [currentPath, setCurrentPath] = useState(window.location.pathname)
+    const [currentPath, setCurrentPath] = useState(getCurrentPath())
 
     useEffect(() => {
         const onLocationChange = () => {
-            setCurrentPath(window.location.pathname)
+            setCurrentPath(getCurrentPath())
         }
         // Listener for next navigation
         window.addEventListener(EVENT.PUSHSTATE, onLocationChange)
@@ -33,7 +34,7 @@ export function Router({ routes = [], defaultComponent: DefaultComponent = NotFo
         }
     })
 
-    const routesToUse = routes.concat(routesFromChildren ?? [])
+    const routesToUse = routes.concat(routesFromChildren ?? []).filter(Boolean)
 
 
     // We used path-to-regexp

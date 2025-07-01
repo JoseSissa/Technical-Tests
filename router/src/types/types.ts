@@ -8,7 +8,7 @@ export type RouteType = {
 export type RouterProps = {
     routes: RouteType[]
     defaultComponent?: any
-    children: ReactNode
+    children?: ReactNode
 }
 
 export type I18nType = {
