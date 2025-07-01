@@ -1,8 +1,8 @@
-import { type FC } from 'react'
+import type { JSX } from "react"
 
 export type Route = {
     path: string
-    component: FC
+    component: ({ routeParams }: { routeParams: any }) => JSX.Element
 }
 
 export type RouterProps = {
