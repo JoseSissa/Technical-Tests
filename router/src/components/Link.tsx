@@ -1,4 +1,4 @@
-import { EVENT } from '../config/const'
+import { EVENT, BUTTONS } from '../config/const'
 
 type LinkProps = {
     target?: '_blank' | '_self' | '_parent' | '_top'
@@ -22,7 +22,7 @@ export function Link({ target = '_self', to, ...props }: LinkProps) {
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
 
-        const isMainEvent = e.button === 0 // primary click
+        const isMainEvent = e.button === BUTTONS.primary // primary click
         const isManageableEvent = target === '_self'
         const isModifiedEvent = e.metaKey || e.altKey || e.ctrlKey || e.shiftKey // modifier click
 
