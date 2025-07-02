@@ -1,33 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { mockTodos } from './mocks/todos'
+import { Todos } from './components/Todos'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState(mockTodos)
+
+  const handleRemove = (id: number) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(updatedTodos)
+  }
+
+  const handleCompletedTodo = (id: number) => {
+    const updatedTodos = todos.map((todo) => todo.id === id ? { ...todo, completed: !todo.completed } : todo)
+    setTodos(updatedTodos)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>todo mvc</h1>
+      <Todos todos={todos} handleRemove={handleRemove} handleCompletedTodo={handleCompletedTodo} />
     </>
   )
 }
