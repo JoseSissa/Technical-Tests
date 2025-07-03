@@ -51,11 +51,17 @@ function App() {
     setFilteredTodos(updatedTodos)
   }
 
+  const handleUpdateTextTodo = (id: TodoID, newText: string) => {
+    const updatedTodos = todos.map((todo) => todo.id === id ? { ...todo, text: newText } : todo)
+    setTodos(updatedTodos)
+    setFilteredTodos(updatedTodos)
+  }
+
   return (
     <>
       <Header handleCreateTodo={handleCreateTodo} />
       <h1>todo mvc</h1>
-      <Todos todos={filteredTodos} handleRemove={handleRemove} handleCompletedTodo={handleCompletedTodo} />
+      <Todos todos={filteredTodos} handleRemove={handleRemove} handleCompletedTodo={handleCompletedTodo} handleUpdateTextTodo={handleUpdateTextTodo} />
       <Footer handleFilter={handleFilter} deleteTodoCompleted={deleteTodoCompleted} />
     </>
   )
