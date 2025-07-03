@@ -17,6 +17,21 @@ export const mockTodos = [
     {
         id: 4,
         text: 'Buy butter',
+        completed: true,
+    },
+    {
+        id: 5,
+        text: 'Buy butter',
         completed: false,
+    },
+    {
+        id: 6,
+        text: 'Buy butter',
+        completed: false,
+    },
+    {
+        id: 7,
+        text: 'Buy butter',
+        completed: true,
     }
 ]
