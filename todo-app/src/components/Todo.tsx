@@ -1,15 +1,12 @@
 import { useState } from 'react'
-import type { TodoID, TodoType } from '../types'
+import type { TodoType } from '../types'
 import { useTodo } from '../hooks/useTodo'
 
-interface Props extends TodoType {
-    handleUpdateTextTodo: (id: TodoID, newText: string) => void
-}
 
-export const Todo: React.FC<Props> = ({ id, text, completed, handleUpdateTextTodo }) => {
+export const Todo: React.FC<TodoType> = ({ id, text, completed }) => {
     const [input, setInput] = useState(text)
     const [updateInput, setUpdateInput] = useState(false)
-    const { removeTodo, completedTodo } = useTodo()
+    const { removeTodo, completedTodo, updateTextTodo } = useTodo()
 
     const handleDoubleClick = (e: React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -18,7 +15,7 @@ export const Todo: React.FC<Props> = ({ id, text, completed, handleUpdateTextTod
     }
 
     const handleSave = () => {
-        handleUpdateTextTodo(id, input)
+        updateTextTodo(id, input)
         setUpdateInput(false)
     }
 

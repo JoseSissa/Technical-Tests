@@ -5,5 +5,11 @@ import type { TodoContextType } from "../types";
 export const TodoContext = createContext<TodoContextType>({
     todos: [],
     removeTodo: () => { },
-    completedTodo: () => { }
+    completedTodo: () => { },
+    createTodo: () => { },
+    updateTextTodo: () => { },
+    deleteTodoCompleted: () => { },
+    filterAllTodos: () => { },
+    filterActiveTodos: () => { },
+    filterCompletedTodos: () => { }
 })

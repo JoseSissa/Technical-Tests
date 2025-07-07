@@ -1,11 +1,9 @@
 import { useState } from "react"
+import { useTodo } from "../hooks/useTodo"
 
-interface Props {
-    handleCreateTodo: (newTodo: string) => void
-}
-
-export const Header: React.FC<Props> = ({ handleCreateTodo }) => {
+export const Header: React.FC = () => {
     const [input, setInput] = useState('')
+    const { createTodo } = useTodo()
 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +13,7 @@ export const Header: React.FC<Props> = ({ handleCreateTodo }) => {
         // const formValues = Object.fromEntries(formData.entries());
         // console.log(formData.get('todo-text'))
         // console.log(formValues)
-        handleCreateTodo(input)
+        createTodo(input)
         setInput('')
     }
     return (

@@ -13,4 +13,10 @@ export interface TodoContextType {
     todos: TodoType[]
     removeTodo: (id: TodoID) => void
     completedTodo: (id: TodoID) => void
+    createTodo: (text: string) => void
+    updateTextTodo: (id: TodoID, text: TodoText) => void
+    deleteTodoCompleted: () => void
+    filterAllTodos: () => void
+    filterActiveTodos: () => void
+    filterCompletedTodos: () => void
 }
