@@ -1,4 +1,4 @@
-import type { Product, ProductInCart, CartAction } from "../types/types"
+import type { ProductInCart, CartAction } from "../types/types"
 
 export const cartInitialState: ProductInCart[] = window.localStorage.getItem('cart')
     ? JSON.parse(window.localStorage.getItem('cart') as string)

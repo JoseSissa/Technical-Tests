@@ -8,3 +8,9 @@ export interface TodoType {
     text: TodoText
     completed: TodoCompleted
 }
+
+export interface TodoContextType {
+    todos: TodoType[]
+    removeTodo: (id: TodoID) => void
+    completedTodo: (id: TodoID) => void
+}
