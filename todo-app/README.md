@@ -12,6 +12,6 @@
 - [x] Crear Header con input (Header)
 - [x] Crear un TODO (Header)
 - [x] Poder editar el texto de un TODO (Doble click)
+- [x] Pasar a Reducer
 - [] Añadir animaciones con AutoAnimate
-- [] Pasar a Reducer
 - [] Sincronizar con el backend

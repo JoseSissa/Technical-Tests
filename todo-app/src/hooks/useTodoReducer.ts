@@ -12,13 +12,13 @@ export function useTodoReducer() {
 
     const updateTextTodo = (id: number, text: string) => dispatch({ type: "UPDATE_TEXT_TODO", payload: { id, text } });
 
-    const deleteTodoCompleted = () => dispatch({ type: "DELETE_TODOS_COMPLETED" });
+    const deleteTodoCompleted = () => dispatch({ type: "DELETE_TODOS_COMPLETED", payload: null });
 
-    const filterAllTodos = () => dispatch({ type: "FILTER_ALL_TODOS" });
+    const filterAllTodos = () => dispatch({ type: "FILTER_ALL_TODOS", payload: null });
 
-    const filterActiveTodos = () => dispatch({ type: "FILTER_ACTIVE_TODOS" });
+    const filterActiveTodos = () => dispatch({ type: "FILTER_ACTIVE_TODOS", payload: null });
 
-    const filterCompletedTodos = () => dispatch({ type: "FILTER_COMPLETED_TODOS" });
+    const filterCompletedTodos = () => dispatch({ type: "FILTER_COMPLETED_TODOS", payload: null });
 
     return { state, removeTodo, completedTodo, createTodo, updateTextTodo, deleteTodoCompleted, filterAllTodos, filterActiveTodos, filterCompletedTodos };
 }

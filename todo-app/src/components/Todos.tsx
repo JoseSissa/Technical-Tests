@@ -4,6 +4,7 @@ import { useTodo } from '../hooks/useTodo'
 
 export const Todos: React.FC = () => {
     const { todos } = useTodo()
+
     return (
         <ul>
             {todos.map((todo: TodoType) => (
