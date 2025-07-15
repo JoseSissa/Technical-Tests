@@ -87,3 +87,30 @@
   gap: 8px;
   margin: 0 auto;
 }
+
+.title {
+  color: #222;
+}
+.title-dark {
+  color: #fff;
+}
+
+.info {
+  margin: 16px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.restart-btn {
+  margin-top: 24px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
