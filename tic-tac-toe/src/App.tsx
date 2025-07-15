@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="centered-container">
       <div>
-        <h1 className={isDark ? "title title-dark" : "title"}>Tic-Tac-Toe</h1>
+        <h1 className={isDark ? "title title-dark" : "title"}>Tres en Raya</h1>
         <Info winner={winner} isDraw={isDraw} turn={turn} />
         <GameBoard board={board} onCellClick={handleCellClick} winner={winner} />
         {showModal && (
