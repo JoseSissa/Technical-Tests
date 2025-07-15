@@ -4,14 +4,36 @@ import { Container, Row, Col, Button, Stack } from 'react-bootstrap';
 import './App.css'
 import { useStorage } from './hooks/useStorage';
 import { AUTO_LANGUAGE } from './const';
-import { ArrowsIcon } from './components/icons';
+import { ArrowsIcon } from './components/Icons.tsx';
 import { LanguageSelector } from './components/LanguageSelector';
 import { SectionType } from './types.d';
 import { TextArea } from './components/TextArea';
+import { useDebounce } from './hooks/useDebounce.ts';
+import { useEffect } from 'react';
+import { Translator } from './services/Translator.ts';
 
 
 function App() {
-  const { toLanguage, fromLanguage, fromText, result, isLoading, interchangeLanguage, setFromLanguage, setToLanguage, setFromText, setToText } = useStorage()
+  const {
+    toLanguage,
+    fromLanguage,
+    fromText,
+    result,
+    isLoading,
+    interchangeLanguage,
+    setFromLanguage,
+    setToLanguage,
+    setFromText,
+    setToText } = useStorage()
+
+  const debouncedFromText = useDebounce({ value: fromText })
+
+  useEffect(() => {
+    Translator({ text: debouncedFromText, fromLanguage, toLanguage })
+      .then(res => setToText(res.translatedText))
+
+  }, [debouncedFromText, toLanguage, fromLanguage])
+
 
   return (
     <Container fluid>
