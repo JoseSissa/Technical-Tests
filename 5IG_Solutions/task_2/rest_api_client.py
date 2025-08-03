@@ -1,7 +1,7 @@
 import requests
 
 # URL a la que quieres hacer la petición
-BASE_URL = 'https://jsonplaceholder.typicode.com/posts/100'
+BASE_URL = 'https://jsonplaceholder.typicode.com/posts/'
 
 # Realiza la petición GET
 respuesta = requests.get(BASE_URL)
@@ -24,12 +24,12 @@ def get_posts():
     except Exception as err:
         print(f"❌ Error inesperado: {err}")
 
-def create_post():
+def create_post(title, body, userId):
     print("\n📤 Enviando petición POST...")
     new_post = {
-        "title": "Mi nuevo post",
-        "body": "Este es el contenido de mi nuevo post.",
-        "userId": 1
+        "title": title,
+        "body": body,
+        "userId": userId
     }
 
     try:
@@ -45,4 +45,8 @@ def create_post():
 
 if __name__ == "__main__":
     get_posts()
-    create_post()
+    create_post(
+        title="Mi nuevo post desde Python",
+        body="Este es el contenido de mi nuevo post creado con parámetros.",
+        userId=1
+    )
