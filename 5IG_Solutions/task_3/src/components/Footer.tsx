@@ -13,7 +13,11 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="text-white font-[700]"
           >
-            <img src="/linkedin.svg" alt="Linkedin icon" className="w-5 h-5" />
+            <img
+              src="/icons/linkedin.svg"
+              alt="Linkedin icon"
+              className="w-5 h-5"
+            />
           </a>
           <a
             href="https://github.com/JoseSissa"
@@ -21,7 +25,11 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="text-white font-[700]"
           >
-            <img src="/github_dark.svg" alt="Github icon" className="w-5 h-5" />
+            <img
+              src="/icons/github_dark.svg"
+              alt="Github icon"
+              className="w-5 h-5"
+            />
           </a>
         </div>
       </div>
