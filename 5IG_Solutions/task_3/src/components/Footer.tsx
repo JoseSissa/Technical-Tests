@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="py-4 text-sm font-[500] bg-[#E3350D] text-white">
+    <footer className="py-4 text-sm font-[500] border-t-2 border-black bg-[#E3350D] text-white">
       <div className="flex justify-between lg:justify-center items-center flex-col lg:flex-row text-center lg:gap-5">
         <p className="lg:flex justify-center items-center gap-2 mb-2 lg:mb-0">
           2025 Pokémon Cards. Technical test for:

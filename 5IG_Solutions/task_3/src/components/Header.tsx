@@ -1,20 +1,14 @@
-type HeaderProps = {
-  setSearch: (search: string) => void;
-  search: string;
-  fetchUniqPokemon: () => void;
-};
+import { usePokemon } from '../hooks/usePokemon';
 
-export default function Header({
-  search,
-  setSearch,
-  fetchUniqPokemon,
-}: HeaderProps) {
+export default function Header() {
+  const { searchPokemon, setSearchPokemon, getOnePokemon } = usePokemon();
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchUniqPokemon();
+    getOnePokemon();
   };
   return (
-    <header className="py-4 bg-[#E3350D] border-b-2 border-black">
+    <header className="py-4 border-b-2 border-black bg-[#E3350D]">
       <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-6">
         <div className="my-2">
           <img src="/logo.webp" alt="Pokedex" />
@@ -30,8 +24,8 @@ export default function Header({
               name="search"
               id="search"
               placeholder="Search by name"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
+              onChange={(e) => setSearchPokemon(e.target.value)}
+              value={searchPokemon}
             />
             <button
               className="border-[1px] border-white p-1 rounded-sm"
