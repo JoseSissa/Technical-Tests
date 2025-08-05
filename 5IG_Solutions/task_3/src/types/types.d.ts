@@ -24,6 +24,7 @@ export type PokemonContextType = {
   onePokemon: PokemonDetail | null;
   loading: boolean;
   error: string | null;
+  setError: (error: string | null) => void;
 };
 
 export interface PokemonDetail {

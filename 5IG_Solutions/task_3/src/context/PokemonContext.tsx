@@ -28,6 +28,7 @@ export const PokemonContext = createContext<PokemonContextType>({
   onePokemon: null,
   loading: false,
   error: null,
+  setError: () => {},
 });
 
 export function PokemonProvider({ children }: { children: React.ReactNode }) {
@@ -48,14 +49,17 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     if (pokemonsByType === type) return;
     // If the type is 'all', reset the page and get the list of all pokemons
     if (type === 'all') {
+      setLoading(true);
       setPage(1);
       setListPokemons([]);
       getPokemonList();
       setPokemonsByType('all');
+      setLoading(false);
       return;
     }
     // If the type is different, get the list of pokemons by type
     try {
+      setLoading(true);
       const response = await fetch(`${BASE_API_URL_TYPES}/${type}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
@@ -75,9 +79,13 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
       const pokemonData = await Promise.all(pokemonPromises);
       setPokemonsByType(type);
       setListPokemons(pokemonData);
+      setLoading(false);
       return data;
     } catch (error) {
+      setError(`Error fetching Pokémon by type ${type}`);
       throw new Error(`Error fetching Pokémon by type ${type}: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,7 +102,10 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
         setError('Pokemon not found, please enter a valid pokemon name');
       }
     } catch (error: any) {
-      setError(error.message);
+      setError(`Error fetching Pokémon by search.`);
+      throw new Error(`Error fetching Pokémon ${searchPokemon}: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,7 +118,10 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
       const data = await response.json();
       return data;
     } catch (error) {
-      throw new Error(`Error fetching Pokémon ${id}: ${error}`);
+      setError(`Error fetching Pokémon data.`);
+      throw new Error(`Error fetching Pokémon data: ${id}: ${error}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,6 +142,7 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
       const pokemonData = await Promise.all(pokemonPromises);
       setListPokemons((prev) => [...prev, ...pokemonData]);
     } catch (err: any) {
+      setError(`Error fetching Pokémon List`);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -162,6 +177,7 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
         onePokemon,
         loading,
         error,
+        setError,
       }}
     >
       {children}

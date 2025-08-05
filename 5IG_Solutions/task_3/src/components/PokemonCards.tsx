@@ -1,24 +1,22 @@
 import type { PokemonDetail } from '../types/types.d';
+import { usePokemon } from '../hooks/usePokemon';
+import { Loading } from './Loading';
+import { Error } from './Error';
 
 type PokemonCardsProps = {
   pokemonDataList: PokemonDetail[];
-  setIsModalOpen: (isModalOpen: boolean) => void;
-  showList: () => void;
-  setPokemonDetail: (pokemon: PokemonDetail) => void;
 };
-export default function PokemonCards({
-  pokemonDataList,
-  setIsModalOpen,
-  showList,
-  setPokemonDetail,
-}: PokemonCardsProps) {
+export default function PokemonCards({ pokemonDataList }: PokemonCardsProps) {
+  const { setIsModalOpen, setPokemonDetail, showList } = usePokemon();
   const handleMoreDetails = (pokemon: PokemonDetail) => {
     setIsModalOpen(true);
     setPokemonDetail(pokemon);
   };
 
   return (
-    <section className="max-w-7xl mx-auto p-6">
+    <section className="relative max-w-7xl w-full flex-grow mx-auto p-6">
+      <Loading />
+      <Error />
       {pokemonDataList.length === 1 && (
         <button
           onClick={showList}
