@@ -4,17 +4,17 @@ type PokemonCardsProps = {
   pokemonDataList: PokemonDetail[];
   setIsModalOpen: (isModalOpen: boolean) => void;
   showList: () => void;
-  setInfoPokemonDetail: (pokemon: PokemonDetail) => void;
+  setPokemonDetail: (pokemon: PokemonDetail) => void;
 };
 export default function PokemonCards({
   pokemonDataList,
   setIsModalOpen,
   showList,
-  setInfoPokemonDetail,
+  setPokemonDetail,
 }: PokemonCardsProps) {
   const handleMoreDetails = (pokemon: PokemonDetail) => {
     setIsModalOpen(true);
-    setInfoPokemonDetail(pokemon);
+    setPokemonDetail(pokemon);
   };
 
   return (

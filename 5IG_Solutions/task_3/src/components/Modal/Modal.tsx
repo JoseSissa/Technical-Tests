@@ -21,11 +21,16 @@ export default function Modal() {
             </button>
 
             <div className="w-full max-w-[500px] max-h-full bg-white rounded-xl shadow-lg overflow-y-auto mx-auto">
-              <div className="flex flex-col items-center p-6">
+              <div className="relative flex flex-col items-center p-6">
+                <p
+                  className={`absolute top-5 left-1/2 -translate-x-1/2 text-8xl text-[#ececec] font-[700] z-10 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.5)]`}
+                >
+                  #{pokemonDetail.id}
+                </p>
                 {/* image */}
                 <div className="flex justify-center items-center aspect-square h-[250px] mb-4">
                   <img
-                    className="drop-shadow-[0px_6px_4px_black] max-w-full max-h-full aspect-square"
+                    className="drop-shadow-[0px_6px_4px_black] max-w-full max-h-full aspect-square z-20"
                     src={pokemonDetail.sprites.other['home'].front_default}
                     alt={pokemonDetail.name}
                   />
@@ -37,7 +42,7 @@ export default function Modal() {
                 {/* types */}
                 <div className="mb-5">
                   {pokemonDetail.types.map((type) => (
-                    <TypesPill typeName={type.type.name} />
+                    <TypesPill typeName={type.type.name} key={type.type.name} />
                   ))}
                 </div>
                 {/* height and weight */}
