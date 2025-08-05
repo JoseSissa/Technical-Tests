@@ -61,6 +61,11 @@
   color: var(--clr-white);
 }
 
+.all {
+  background-color: var(--clr-gray);
+  color: var(--clr-black);
+}
+
 .bug {
   background-color: var(--type-bug);
   color: var(--clr-black);

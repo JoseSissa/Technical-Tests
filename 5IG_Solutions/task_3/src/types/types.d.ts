@@ -3,15 +3,21 @@ export type Pokemon = {
   url: string;
 };
 
+export type PokemonByType = {
+  pokemon: Pokemon;
+};
+
 export type PokemonContextType = {
   page: number;
   setPage: (page: number) => void;
   searchPokemon: string;
+  pokemonsByType: string;
   setSearchPokemon: (searchPokemon: string) => void;
   getOnePokemon: () => void;
   showList: () => void;
   setIsModalOpen: (isModalOpen: boolean) => void;
   setPokemonDetail: (pokemonDetail: PokemonDetail) => void;
+  getPokemonsByType: (type: string) => void;
   isModalOpen: boolean;
   pokemonDetail: PokemonDetail | null;
   listPokemons: PokemonDetail[];

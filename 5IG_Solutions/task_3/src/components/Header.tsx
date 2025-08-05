@@ -1,4 +1,5 @@
 import { usePokemon } from '../hooks/usePokemon';
+import { Filters } from './Filters';
 
 export default function Header() {
   const { searchPokemon, setSearchPokemon, getOnePokemon } = usePokemon();
@@ -36,6 +37,7 @@ export default function Header() {
           </form>
         </div>
       </div>
+      <Filters />
     </header>
   );
 }
