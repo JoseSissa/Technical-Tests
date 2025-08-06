@@ -14,7 +14,7 @@ export default function PokemonCards({ pokemonDataList }: PokemonCardsProps) {
   };
 
   return (
-    <section className="relative max-w-7xl w-full flex-grow mx-auto p-6">
+    <section className="relative flex-grow p-6">
       <Loading />
       <Error />
       {pokemonDataList.length === 1 && (
@@ -26,7 +26,7 @@ export default function PokemonCards({ pokemonDataList }: PokemonCardsProps) {
         </button>
       )}
 
-      <ul className="pokemon-list__grid">
+      <ul className="max-w-7xl mx-auto px-2 pokemon-list__grid">
         {pokemonDataList.map((pokemon) => (
           <li
             className="relative w-full max-w-56 p-2 rounded-xl bg-white shadow-lg"
