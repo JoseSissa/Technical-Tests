@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import './App.css';
+import { ListOfUsers } from './components/ListOfUsers';
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <>
-            <h1>Redux</h1>
+            <h1 className="text-red-400">Redux</h1>
+            <ListOfUsers />
         </>
     );
 }

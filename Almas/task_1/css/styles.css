@@ -1,0 +1,338 @@
+@font-face {
+  font-family: "Figtree-regular";
+  src: url("../assets/fonts/Figtree-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree-medium";
+  src: url("../assets/fonts/Figtree-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree-semibold";
+  src: url("../assets/fonts/Figtree-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree-bold";
+  src: url("../assets/fonts/Figtree-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --text-primary: #ffffff;
+  --text-secondary: #f6f6f6;
+  --text-tertiary: #e2e2e2;
+  --regular: "Figtree-regular";
+  --medium: "Figtree-medium";
+  --semibold: "Figtree-semibold";
+  --bold: "Figtree-bold";
+  --call-to-action: #2766af;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--regular);
+}
+
+.cta-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-family: var(--bold);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-blur {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--semibold);
+  font-size: 18px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.title-1 {
+  font-family: var(--semibold);
+  color: var(--text-primary);
+  font-size: clamp(32px, 5vw, 64px);
+  text-align: center;
+  line-height: clamp(50px, 4.35vw, 75px);
+  text-wrap: pretty;
+}
+.text-1 {
+  font-family: var(--regular);
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: center;
+  text-wrap: pretty;
+  line-height: 30px;
+}
+
+.header-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(10px, 1.25vw, 21.5px);
+  font-size: 12px;
+  text-align: center;
+  background-color: var(--call-to-action);
+  color: var(--text-primary);
+  font-family: var(--semibold);
+}
+
+.header-banner span {
+  font-family: var(--regular);
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+.header-menu_nav ul {
+  display: none;
+  list-style: none;
+}
+
+.header-menu_cta {
+  display: none;
+}
+
+.header-menu_hamburguer img {
+  pointer-events: none;
+}
+.header-menu_hamburguer button {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.main-banner .title-1 {
+  margin-top: 16px;
+}
+.main-banner .text-1 {
+  max-width: 574px;
+  margin-top: 15px;
+}
+.main-banner .cta-buttons {
+  margin-top: 50px;
+}
+
+.cta-buttons a:first-child {
+  padding: 10px 12px;
+  background-color: var(--call-to-action);
+  border-color: var(--call-to-action);
+}
+.cta-buttons a:last-child {
+  padding: 10px 26px;
+}
+
+.main-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 696px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.main-banner_bg {
+  position: absolute;
+  inset: 0;
+  top: clamp(50px, 3.7vw, 64px);
+  width: 100%;
+  height: 100%;
+  max-height: 814px;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.main-banner_bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.main-banner_bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+/* --------------------------- Styles for mobile menu --------------------------- */
+.header-menu_mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.header-menu_mobile.menu-hidden {
+  transform: translateY(-100%);
+}
+
+.close-menu-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background-color: transparent;
+  display: flex;
+}
+
+.close-menu-button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border: none;
+}
+
+.header-menu_mobile ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  font-size: 20px;
+}
+
+.header-menu_mobile ul a {
+  text-decoration: none;
+  color: var(--text-tertiary);
+}
+
+.header-menu_mobile .cta-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--text-tertiary);
+  border-radius: 8px;
+}
+
+/* --------------------------- End Styles for mobile menu --------------------------- */
+
+@media (width >= 428px) and (width < 768px) {
+  .main-banner_bg {
+    top: clamp(36px, 3.7vw, 64px);
+  }
+}
+@media (width >= 768px) and (width < 1024px) {
+  .main-banner_bg {
+    top: clamp(36px, 4vw, 64px);
+  }
+}
+@media (width >= 1024px) {
+  .text-1 {
+    font-size: 18px;
+  }
+  .cta-button {
+    font-size: 16px;
+  }
+  .cta-buttons a:first-child {
+    padding: 14px 16px;
+  }
+  .cta-buttons a:last-child {
+    padding: 14px 30px;
+  }
+  .header-banner {
+    font-size: 16px;
+  }
+  .header-menu {
+    max-width: 1427px;
+    margin-top: 30px;
+    padding: 0 1rem;
+  }
+  .header-menu_nav ul {
+    display: flex;
+    gap: 40px;
+  }
+
+  .header-menu_nav ul a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: var(--regular);
+    font-size: 20px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+  .header-menu_cta {
+    display: block;
+  }
+  .header-menu_cta a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border: 1px solid var(--text-tertiary);
+    border-radius: 8px;
+    font-family: var(--bold);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .header-menu_hamburguer {
+    display: none;
+  }
+
+  .main-banner_bg {
+    top: clamp(47px, 3.9vw, 64px);
+  }
+}
