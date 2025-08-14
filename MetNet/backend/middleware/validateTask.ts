@@ -10,7 +10,6 @@ export const validateTask = (
   try {
     const result = taskSchema.parse(req.body);
     console.log(result);
-
     next();
   } catch (error) {
     if (error instanceof z.ZodError) {

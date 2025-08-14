@@ -13,10 +13,12 @@ export class TasksModel {
 
   static async createTask(task: Task) {
     try {
-      const { title, description } = task;
+      const { title, description, status } = task;
       const newTask = db
-        .prepare("INSERT INTO tasks (title, description) VALUES (?, ?)")
-        .run(title, description);
+        .prepare(
+          "INSERT INTO tasks (title, description, status) VALUES (?, ?, ?)"
+        )
+        .run(title, description, status);
       return newTask;
     } catch (error) {
       throw error;
@@ -25,10 +27,12 @@ export class TasksModel {
 
   static async updateTask(id: string, task: Task) {
     try {
-      const { title, description } = task;
+      const { title, description, status } = task;
       const updatedTask = db
-        .prepare("UPDATE tasks SET title = ?, description = ? WHERE id = ?")
-        .run(title, description, id);
+        .prepare(
+          "UPDATE tasks SET title = ?, description = ?, status = ? WHERE id = ?"
+        )
+        .run(title, description, status, id);
       return updatedTask;
     } catch (error) {
       throw error;

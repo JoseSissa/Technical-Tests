@@ -8,16 +8,18 @@ Content-Type: application/json
 
 {
     "title": "Task 1",
-    "description": "Description 1"
+    "description": "Description 1",
+    "status": "pending"
 }
 
 ### Update a task
-PUT http://localhost:3000/api/v1/tasks/16
+PUT http://localhost:3000/api/v1/tasks/3
 Content-Type: application/json
 
 {
     "title": "Task 16",
-    "description": "Description 16"
+    "description": "Description 16",
+    "status": "completed"
 }
 
 ### Delete a task
