@@ -33,19 +33,62 @@ const filteredTasks = computed(() => {
 </script>
 
 <template>
-  <div>
-    <div>
-      <button @click="taskStatus = 'all'">Todas</button>
-      <button @click="taskStatus = 'completed'">Completadas</button>
-      <button @click="taskStatus = 'pending'">Pendientes</button>
+  <section class="w-full p-4">
+    <h2 class="py-4 text-2xl font-bold">Lista de Tareas:</h2>
+    <div class="flex justify-center items-center w-full my-4">
+      <button
+        class="w-full max-w-1/3 py-1 px-2 border rounded-l-sm cursor-pointer"
+        :class="{
+          'bg-blue-500': taskStatus === 'all',
+          'bg-blue-200': taskStatus !== 'all',
+        }"
+        @click="taskStatus = 'all'"
+      >
+        Todas
+      </button>
+      <button
+        class="w-full max-w-1/3 py-1 px-2 border cursor-pointer"
+        :class="{
+          'bg-blue-500': taskStatus === 'pending',
+          'bg-blue-200': taskStatus !== 'pending',
+        }"
+        @click="taskStatus = 'pending'"
+      >
+        Pendientes
+      </button>
+      <button
+        class="w-full max-w-1/3 py-1 px-2 border rounded-r-sm cursor-pointer"
+        :class="{
+          'bg-blue-500': taskStatus === 'completed',
+          'bg-blue-200': taskStatus !== 'completed',
+        }"
+        @click="taskStatus = 'completed'"
+      >
+        Completadas
+      </button>
     </div>
 
-    <ul>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <li v-for="task in filteredTasks" :key="task.id">
-        <span>{{ task.title }} - {{ task.status }}</span>
-        <button @click="handleState(task)">Cambiar estado</button>
-        <button @click="removeTask(task.id)">Eliminar</button>
+        <div class="flex flex-col rounded-sm shadow-lg p-2 bg-white">
+          <h4 class="text-lg font-bold">{{ task.title }}</h4>
+          <p class="py-4 text-sm">{{ task.description }}</p>
+          <div class="flex justify-between items-center">
+            <button
+              class="py-1 px-2 border border-black rounded-sm bg-blue-500 text-white cursor-pointer"
+              @click="handleState(task)"
+            >
+              Cambiar estado
+            </button>
+            <button
+              class="py-1 px-2 border border-black rounded-sm bg-red-500 text-white cursor-pointer"
+              @click="removeTask(task.id)"
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
       </li>
     </ul>
-  </div>
+  </section>
 </template>

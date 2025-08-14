@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import TaskForm from "./components/TaskForm.vue";
 import TaskList from "./pages/TaskList.vue";
+import Header from "./components/Header.vue";
 import { getTasks } from "./services/taskService";
 import type { Task } from "./types/types";
 
@@ -15,11 +15,10 @@ onMounted(() => loadTasks());
 </script>
 
 <template>
-  <div>
-    <h1>Gestión de Tareas</h1>
-    <TaskForm @task-created="loadTasks" />
+  <main class="w-full max-w-2xl lg:max-w-7xl mx-auto">
+    <Header @task-created="loadTasks" />
     <TaskList :tasks="tasks" @task-updated="loadTasks" />
-  </div>
+  </main>
 </template>
 
 <style scoped>
