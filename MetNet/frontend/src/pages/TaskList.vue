@@ -1,7 +1,28 @@
 <script setup lang="ts">
 import { ref, computed, defineProps } from "vue";
-import type { Task } from "../types/types";
 import { updateTask, deleteTask } from "../services/taskService";
+import type { Task } from "../types/types";
+
+const filterButtons = [
+  {
+    value: "all" as const,
+    label: "Todas",
+    isFirst: true,
+    isLast: false,
+  },
+  {
+    value: "pending" as const,
+    label: "Pendientes",
+    isFirst: false,
+    isLast: false,
+  },
+  {
+    value: "completed" as const,
+    label: "Completadas",
+    isFirst: false,
+    isLast: true,
+  },
+];
 
 const props = defineProps<{
   tasks: Task[];
@@ -10,6 +31,21 @@ const props = defineProps<{
 const taskStatus = ref<"all" | "completed" | "pending">("all");
 
 const emit = defineEmits(["task-updated"]);
+
+function getButtonClasses(button: (typeof filterButtons)[0]) {
+  const baseClasses = "w-full max-w-1/3 py-1 px-2 cursor-pointer";
+  const roundingClasses = button.isFirst
+    ? "rounded-l"
+    : button.isLast
+    ? "rounded-r"
+    : "";
+  const stateClasses =
+    taskStatus.value === button.value
+      ? "bg-[#377DFF]/20 border border-[#377DFF] text-[#377DFF]"
+      : "bg-[#377DFF] border border-[#377DFF] text-white";
+
+  return `${baseClasses} ${roundingClasses} ${stateClasses}`;
+}
 
 async function handleState(task: Task) {
   if (task.status === "completed") return;
@@ -31,49 +67,18 @@ const filteredTasks = computed(() => {
   if (taskStatus.value === "all") return props.tasks;
   return props.tasks.filter((t) => t.status === taskStatus.value);
 });
-
-console.log(filteredTasks.value);
 </script>
 
 <template>
   <section class="w-full p-4">
-    <!-- <h2 class="py-4 text-2xl font-bold">Lista de Tareas:</h2> -->
     <div class="flex justify-center items-center w-full max-w-xl mx-auto my-4">
       <button
-        class="w-full max-w-1/3 py-1 px-2 rounded-l cursor-pointer"
-        :class="{
-          'bg-[#377DFF]/20 border border-[#377DFF] text-[#377DFF]':
-            taskStatus === 'all',
-          'bg-[#377DFF] border border-[#377DFF] text-white':
-            taskStatus !== 'all',
-        }"
-        @click="taskStatus = 'all'"
+        v-for="button in filterButtons"
+        :key="button.value"
+        :class="getButtonClasses(button)"
+        @click="taskStatus = button.value"
       >
-        Todas
-      </button>
-      <button
-        class="w-full max-w-1/3 py-1 px-2 cursor-pointer"
-        :class="{
-          'bg-[#377DFF]/20 border border-[#377DFF] text-[#377DFF]':
-            taskStatus === 'pending',
-          'bg-[#377DFF] border border-[#377DFF] text-white':
-            taskStatus !== 'pending',
-        }"
-        @click="taskStatus = 'pending'"
-      >
-        Pendientes
-      </button>
-      <button
-        class="w-full max-w-1/3 py-1 px-2 rounded-r cursor-pointer"
-        :class="{
-          'bg-[#377DFF]/20 border border-[#377DFF] text-[#377DFF]':
-            taskStatus === 'completed',
-          'bg-[#377DFF] border border-[#377DFF] text-white':
-            taskStatus !== 'completed',
-        }"
-        @click="taskStatus = 'completed'"
-      >
-        Completadas
+        {{ button.label }}
       </button>
     </div>
 
