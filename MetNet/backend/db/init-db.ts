@@ -11,13 +11,13 @@ const tables_db = `
         status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'completed'))
     );
 
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 1', 'Descripción de la tarea 1', 'pending');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 2', 'Descripción de la tarea 2', 'completed');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 3', 'Descripción de la tarea 3', 'pending');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 4', 'Descripción de la tarea 4', 'completed');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 5', 'Descripción de la tarea 5', 'pending');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 6', 'Descripción de la tarea 6', 'completed');
-    INSERT INTO tasks (title, description, status) VALUES ('Tarea 7', 'Descripción de la tarea 7', 'pending');
+    INSERT INTO tasks (title, description, status) VALUES ('Configurar entorno de desarrollo', 'Instalar Node.js, configurar TypeScript y establecer estructura de proyecto', 'completed');
+    INSERT INTO tasks (title, description, status) VALUES ('Implementar API REST', 'Crear endpoints para CRUD de tareas con Express y validación de datos', 'pending');
+    INSERT INTO tasks (title, description, status) VALUES ('Diseñar base de datos', 'Definir esquema de tablas y relaciones para el sistema de gestión de tareas', 'completed');
+    INSERT INTO tasks (title, description, status) VALUES ('Escribir documentación', 'Crear documentación técnica de la API y guías de uso para desarrolladores', 'pending');
+    INSERT INTO tasks (title, description, status) VALUES ('Implementar autenticación', 'Agregar sistema de login con JWT y middleware de autorización', 'pending');
+    INSERT INTO tasks (title, description, status) VALUES ('Crear tests unitarios', 'Desarrollar suite de pruebas para controladores y modelos usando Jest', 'completed');
+    INSERT INTO tasks (title, description, status) VALUES ('Optimizar rendimiento', 'Revisar consultas SQL, implementar cache y mejorar tiempo de respuesta', 'pending');
 `;
 
 // Ejecutar el script
