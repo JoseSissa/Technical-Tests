@@ -23,11 +23,9 @@ async function submitForm() {
 </script>
 
 <template>
-  <header
-    class="flex flex-col items-center justify-center w-full max-w-2xl mx-auto"
-  >
+  <header class="flex items-center w-full max-w-2xl mx-auto px-4">
     <h1 class="py-4 text-2xl font-bold">To-Do App</h1>
-    <div class="w-full p-4">
+    <!-- <div class="w-full p-4">
       <form @submit.prevent="submitForm">
         <label for="title" class="flex flex-col mb-3"
           >Título
@@ -64,6 +62,6 @@ async function submitForm() {
           </button>
         </div>
       </form>
-    </div>
+    </div> -->
   </header>
 </template>
